@@ -52,7 +52,7 @@ function draw() {
 
 function showResult() {
     if (myRec.resultValue == true) {
-        sentence = myRec.resultString;
+        sentence = myRec.resultString.split(' ').pop();
         resultP.html(sentence);
 
         if (sentence.includes("kakao")) {
