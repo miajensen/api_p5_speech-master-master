@@ -57,11 +57,11 @@ function draw() {
     if (direction == "hej" || hej > 1) {
         fill(255);
         textSize(25);
-        text(':' + minute(), 20, 50);
+        text(':' + minute(), 35, 50);
         text(hour(), 5, 50);
         hej = hej + 1;
         if (hour() == 9 && minute() > 15 && minute() < 25) {
-            textSize(40);
+            textSize(30);
             text('FRIKVARTER', 200, 200);
         }
         if (hour() == 10 && minute() > 25 && minute() < 35) {
