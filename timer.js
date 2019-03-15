@@ -1,13 +1,9 @@
-//Make a small drawing program with p5 speech 
-//reference: http://ability.nyu.edu/p5.js-speech/
-//Cloned fra
-
 let myRec, browserCompatible, pen, direction, displayWord;
 
+var hej = 0;
 
 function setup() {
     cnv = createCanvas(400, 400);
-    background('blue');
     //Check browser compatibility
     browserCompatible = window.webkitSpeechRecognition ||
         window.mozSpeechRecognition ||
@@ -42,6 +38,7 @@ function setup() {
 }
 
 function draw() {
+    background('blue');
     if (direction == "left") pen.x--;
     if (direction == "right") pen.x++;
     if (direction == "up") pen.y--;
@@ -57,10 +54,32 @@ function draw() {
     if (direction == "kasper") {
         pen.size = pen.size + 1;
     }
-    if (direction =="hej"){
+    if (direction == "hej" || hej > 1) {
+        fill(255);
         textSize(25);
-    text(minute(), 20, 50);
-    text(hour(), 5, 50);
+        text(':' + minute(), 20, 50);
+        text(hour(), 5, 50);
+        hej = hej + 1;
+        if (hour() == 9 && minute() > 15 && minute() < 25) {
+            textSize(40);
+            text('FRIKVARTER', 200, 200);
+        }
+        if (hour() == 10 && minute() > 25 && minute() < 35) {
+            textSize(40);
+            text('FRIKVARTER', 200, 200);
+        }
+        if (hour() == 10 && minute() > 35 && hour() < 13 && minute() < 5) {
+            textSize(40);
+            text('FRIKVARTER', 200, 200);
+        }
+        if (hour() == 13 && minute() > 5 && minute() < 15) {
+            textSize(40);
+            text('FRIKVARTER', 200, 200);
+        }
+        if (hour() == 14 && minute() > 15 && minute() < 20) {
+            textSize(40);
+            text('FRIKVARTER', 200, 200);
+        }
     }
 }
 
@@ -84,7 +103,7 @@ function showResult() {
             case 'kasper':
                 direction = "kasper"
                 break;
-                case 'hej':
+            case 'hej':
                 direction = "hej"
                 break;
             default:
@@ -93,24 +112,3 @@ function showResult() {
         }
     }
 }
-
-/*
-OPGAVER 
-Vi skal forsøge at lave et lille tegneprogram, som bruger stemmegenkendelse til at føre pennen rundt på skærmen. 
-Det første vi gør er at lave et objekt, pen, med Javascript Object notation. Objektet skal have følgende properties og metoder:
-x, y, size, col
-show() - metode som laver fill(this.col), og viser en ellipse(this.x, this.y, this.size, this.size)
-Se hvordan her: https://www.w3schools.com/jS/js_objects.asp
-Objektet skal laves i setup() - og metoden pen.show() skal kaldes i draw() 
-Nu skal vi så bruge variablen word til at flytte rundt på objektet. Til det skal vi bruge et såkaldt switch statement i draw. 
-Læs dokumentationen her - og se om du kan sørge for at ordene 'left', 'right', 'up', 'down' flytter vores pen rundt
-https://www.w3schools.com/js/js_switch.asp
-Se så om du kan tilføje endnu en metode i objektet - bounce - som sørger for at pennen ikke kommer længere, 
-når x er mindre end nul eller større end bredden. Og tilsvarende for y.
-Bemærk at der findes en smart måde at skrive comditions på, således:
-a = a < 0 ? 0 : a;
-Som betyder - sæt a til (er a mindre end nul?) 0, ellers a
-_ _ _ _ _ _ _ _
-Se om du kan lave programmet så man kan skifte farver - ved for eksempel at sige green, red, blue
-Se om du kan lave programmet så man kan skifte størrelse ved at sige bigger, smaller
-*/
